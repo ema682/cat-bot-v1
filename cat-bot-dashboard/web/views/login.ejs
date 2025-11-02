@@ -1,0 +1,15 @@
+<!DOCTYPE html><html><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="/public/style.css"/>
+<title><%= t('app_name') %> • Login</title>
+</head><body>
+<%- include('partials/header', { t, user }) %>
+<div class="container">
+  <div class="card">
+    <h2><%= t('app_name') %></h2>
+    <p class="help">Carl-bot style dashboard for your Discord server.</p>
+    <a class="btn" href="/login">🔐 <%= t('login_title') %></a>
+  </div>
+</div>
+<div class="footer">© <%= new Date().getFullYear() %> Cat-BOT</div>
+</body></html>

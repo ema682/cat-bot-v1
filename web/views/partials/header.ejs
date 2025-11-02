@@ -1,0 +1,14 @@
+<div class="nav">
+  <div class="brand">
+    <img src="/public/logo.png" class="logo" alt="logo"/> <%= t('app_name') %>
+  </div>
+  <div>
+    <a href="/guilds" class="btn" style="background:#111;margin-right:12px"><%= t('dashboard') %></a>
+    <span class="lang"><%= t('language') %>:
+      <a href="?lang=ja">🇯🇵 <%= t('jp') %></a> | <a href="?lang=en">🇺🇸 <%= t('en') %></a>
+    </span>
+    <% if (user) { %>
+      <a href="/logout" class="btn" style="margin-left:12px;background:#e53e3e"><%= t('logout') %></a>
+    <% } %>
+  </div>
+</div>

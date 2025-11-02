@@ -1,0 +1,81 @@
+<!DOCTYPE html><html><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="/public/style.css"/>
+<title><%= t('dashboard') %> — <%= guild.name %></title>
+</head><body>
+<%- include('partials/header', { t, user }) %>
+<div class="container">
+  <h2 style="margin:8px 0 16px"><%= guild.name %> — <%= t('dashboard') %></h2>
+  <div class="grid">
+    <div class="card">
+      <h3>📂 <%= t('clone_category') %></h3>
+      <form method="POST" action="/action/clonecategory">
+        <select class="select" name="categoryId" required>
+          <% categories.forEach(c => { %>
+            <option value="<%= c.id %>"><%= c.name %></option>
+          <% }) %>
+        </select>
+        <input name="newName" placeholder="<%= t('new_name') %>" required/>
+        <input type="hidden" name="guildId" value="<%= guild.id %>"/>
+        <button class="btn"><%= t('submit') %></button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>🎭 <%= t('clone_role') %></h3>
+      <form method="POST" action="/action/clonerole">
+        <select class="select" name="roleId" required>
+          <% roles.forEach(r => { %>
+            <option value="<%= r.id %>"><%= r.name %></option>
+          <% }) %>
+        </select>
+        <input name="newName" placeholder="<%= t('new_name') %>" required/>
+        <input type="hidden" name="guildId" value="<%= guild.id %>"/>
+        <button class="btn"><%= t('submit') %></button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>🔐 <%= t('copy_perms') %></h3>
+      <form method="POST" action="/action/copyperms">
+        <select class="select" name="fromId" required>
+          <% channels.forEach(ch => { %>
+            <option value="<%= ch.id %>">FROM — [<%= ch.type %>] <%= ch.name %></option>
+          <% }) %>
+        </select>
+        <select class="select" name="toId" required>
+          <% channels.forEach(ch => { %>
+            <option value="<%= ch.id %>">TO — [<%= ch.type %>] <%= ch.name %></option>
+          <% }) %>
+        </select>
+        <input type="hidden" name="guildId" value="<%= guild.id %>"/>
+        <button class="btn"><%= t('submit') %></button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>💾 <%= t('save_template') %></h3>
+      <form method="POST" action="/action/templatelist">
+        <select class="select" name="categoryId" required>
+          <% categories.forEach(c => { %>
+            <option value="<%= c.id %>"><%= c.name %></option>
+          <% }) %>
+        </select>
+        <input type="hidden" name="guildId" value="<%= guild.id %>"/>
+        <button class="btn"><%= t('submit') %></button>
+      </form>
+    </div>
+  </div>
+
+  <% if (flash) { %>
+    <div class="card" style="margin-top:16px;background:#e6ffed;border-color:#a7f3d0">
+      <b><%= t('success') %>:</b> <%= flash %>
+    </div>
+  <% } %>
+
+  <div style="margin-top:16px">
+    <a class="btn" href="/guilds">⟵ <%= t('back_to_guilds') %></a>
+  </div>
+</div>
+<div class="footer">© <%= new Date().getFullYear() %> Cat-BOT</div>
+</body></html>

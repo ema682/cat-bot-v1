@@ -1,0 +1,20 @@
+<!DOCTYPE html><html><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="/public/style.css"/>
+<title><%= t('guilds_title') %></title>
+</head><body>
+<%- include('partials/header', { t, user }) %>
+<div class="container">
+  <h2 style="margin:8px 0 16px"><%= t('choose_server') %></h2>
+  <div class="grid">
+    <% guilds.forEach(g => { %>
+      <div class="card">
+        <h3><%= g.name %></h3>
+        <p class="help"><%= t('need_manage_perm') %></p>
+        <a class="btn" href="/dashboard/<%= g.id %>">Open</a>
+      </div>
+    <% }) %>
+  </div>
+</div>
+<div class="footer">© <%= new Date().getFullYear() %> Cat-BOT</div>
+</body></html>
